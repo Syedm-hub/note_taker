@@ -75,5 +75,55 @@ else {
 
 };
 
+//saving the notes 
+const handleNoteSave = () => {
+    const newNote = {
+        title: noteTitle.value,
+        text: noteText.value,
+    };
+    saveNoteBtn(newNote).then (() => {
+        getAndRenderNotes();
+        renderActiveNote();
+    });
+};
+
+//Deleting the note 
+const handleNoteDelete = (e) => {
+    e.stopPropagation();
+
+    const note = e.target;
+    
+    if (activeNote.id === noteId) {
+        activeNote = {};
+    }
+
+    deleteNote(noteId).then(() => {
+        getAndRenderNotes();
+        renderActiveNote();
+    });
+};
+
+//displaying the active notes 
+const handleNoteView = (e) => {
+    e.preventDefault();
+    activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+    renderActiveNote();
+};
+
+
+//Let the user to submit a new note 
+const handleNewNoteView = (e) => {
+    activeNote = {};
+    renderActiveNote();
+};
+
+const handleRenderSaveBtn = () => {
+    if (!noteTitle.value.trim() 
+    || !noteText.value.trim()) {
+        hide(saveNoteBtn);
+    } else {
+        show(saveNoteBtn);
+    }
+};
 
 
