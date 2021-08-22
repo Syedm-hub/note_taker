@@ -71,16 +71,23 @@ const renderActiveNote = () => {
 };
 
 //save new notes and rendering to place new notes 
+const handleNoteSave = () => {
+  const newNote = {
+    title: noteTitle.value,
+    text: noteText.value,
+  };
+  saveNote(newNote).then(() => {
+    getAndRenderNotes();
+    renderActiveNote();
+  });
+};
 
-
-// Delete the clicked note
+// Delete icon to delete any note 
 const handleNoteDelete = (e) => {
   
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-
-  
-  deleteNote(noteId).then(() => {
+   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
   });
