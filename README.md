@@ -6,4 +6,4 @@
 
 ## Deployed Link
 
-### powerful-mountain-27811.herokuapp.com/
+### [powerful-mountain-27811.herokuapp.com/]
